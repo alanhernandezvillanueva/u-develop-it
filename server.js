@@ -131,10 +131,9 @@ app.delete('/api/candidate/:id', (req, res) => {
   });
   // Update a candidate's party
 app.put('/api/candidate/:id', (req, res) => {
+  const errors = inputCheck(req.body, 'party_id');
   const sql = `UPDATE candidates SET party_id = ? 
                WHERE id = ?`;
-  const errors = inputCheck(req.body, 'party_id');
-
 if (errors) {
   res.status(400).json({ error: errors });
   return;
